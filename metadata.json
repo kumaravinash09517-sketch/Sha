@@ -1,0 +1,6 @@
+{
+  "name": "My Assistant",
+  "description": "Offline P2P audio and video calling app over Wi-Fi hotspot using WebRTC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
