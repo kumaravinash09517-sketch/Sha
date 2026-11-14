@@ -36,3 +36,4 @@ Thumbs.db
 .env
 *.keystore
 !debug.keystore
+!debug.keystore.base64

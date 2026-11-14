@@ -22,7 +22,7 @@
         android:paddingEnd="16dp"
         android:paddingTop="36dp"
         android:paddingBottom="12dp"
-        android:background="#990A0F1D">
+        android:background="#B30A0F1D">
 
         <ImageView
             android:layout_width="32dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/tv_local_ip_banner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="IP: Detecting..."
+                android:text="My IP: Detecting..."
                 android:textColor="#38BDF8"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -67,10 +67,10 @@
     <!-- Local Floating PIP Video Card -->
     <FrameLayout
         android:id="@+id/local_surface_container"
-        android:layout_width="110dp"
-        android:layout_height="150dp"
+        android:layout_width="104dp"
+        android:layout_height="142dp"
         android:layout_gravity="top|end"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_local_preview"
         android:clipToOutline="true"
@@ -82,13 +82,13 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
-    <!-- Connection & Dialing Overlay (shown when idle or preparing call) -->
+    <!-- Connection, Diagnostics & Controls Dashboard -->
     <ScrollView
         android:id="@+id/connect_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="12dp"
         android:fillViewport="true"
         android:overScrollMode="never">
 
@@ -96,24 +96,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="28dp"
             android:gravity="center_horizontal">
 
-            <!-- Title & Mode Badge -->
+            <!-- Mode Badge -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:background="@drawable/bg_pill"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:gravity="center"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="10dp">
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/ic_wifi_tethering"
                     android:contentDescription="Hotspot Icon" />
 
@@ -123,74 +127,160 @@
                     android:layout_marginStart="6dp"
                     android:text="Offline Wi-Fi / Hotspot P2P"
                     android:textColor="#38BDF8"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Diagnostic Failure Alert Banner (Shown automatically when a call fails/disconnects) -->
+            <LinearLayout
+                android:id="@+id/diagnostic_error_card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Offline Video &amp; Audio Calling"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textAlignment="center" />
+                android:background="@drawable/bg_error_card"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Connect two phones directly over local Wi-Fi Hotspot without internet or cellular data."
-                android:textColor="#94A3B8"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:layout_marginBottom="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DIAGNOSTIC ALERT: CALL DISCONNECTED"
+                    android:textColor="#FCA5A5"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
-            <!-- Local Device Server Status Card -->
+                <TextView
+                    android:id="@+id/tv_diagnostic_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Inspecting connection..."
+                    android:textColor="#FEE2E2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Live Counters & Connection Health Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_glass_card"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="14dp"
+                android:layout_marginBottom="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MY DEVICE (SIGNALING SERVER)"
+                    android:text="LIVE NETWORK &amp; DIAGNOSTICS"
                     android:textColor="#38BDF8"
                     android:textSize="11sp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active Peers"
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_active_peers_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#F8FAFC"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Incoming Status"
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_incoming_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Listening :8888"
+                            android:textColor="#22C55E"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Conn. Health"
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tv_connection_health"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ready"
+                            android:textColor="#38BDF8"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_device_ip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="192.168.43.1"
+                    android:layout_marginTop="10dp"
+                    android:text="My Hotspot IP: 192.168.43.1"
                     android:textColor="#F8FAFC"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_server_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="● TCP Server listening on port 8888"
+                    android:layout_marginTop="2dp"
+                    android:text="● TCP Signaling Server active on port 8888"
                     android:textColor="#22C55E"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- Peer Connect Card -->
+            <!-- Peer Connect & Call Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_glass_card"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="14dp"
+                android:layout_marginBottom="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -200,21 +290,13 @@
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Enter the IP address of the other phone"
-                    android:textColor="#94A3B8"
-                    android:textSize="12sp" />
-
                 <EditText
                     android:id="@+id/et_peer_ip"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_input"
-                    android:hint="e.g. 192.168.43.1"
+                    android:hint="Peer IP (e.g. 192.168.43.1)"
                     android:textColorHint="#475569"
                     android:textColor="#FFFFFF"
                     android:inputType="textUri"
@@ -223,22 +305,42 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp" />
 
-                <Button
-                    android:id="@+id/btn_fill_hotspot_ip"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Use Default Hotspot IP (192.168.43.1)"
-                    android:textColor="#38BDF8"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:padding="4dp" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btn_fill_hotspot_ip"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Host IP (192.168.43.1)"
+                        android:textColor="#38BDF8"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:gravity="start|center_vertical"
+                        android:padding="4dp" />
+
+                    <Button
+                        android:id="@+id/btn_refresh_ip"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Refresh IP"
+                        android:textColor="#94A3B8"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:padding="4dp" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_start_call"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
                     android:background="@drawable/bg_button_call"
                     android:text="START P2P VIDEO CALL"
                     android:textColor="#FFFFFF"
@@ -246,45 +348,147 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Quick Instructions -->
+            <!-- System & Hardware Controls Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_glass_card"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="14dp"
+                android:layout_marginBottom="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HOW TO CONNECT VIA HOTSPOT:"
-                    android:textColor="#E2E8F0"
-                    android:textSize="12sp"
+                    android:text="HARDWARE &amp; SYSTEM CONTROLS"
+                    android:textColor="#38BDF8"
+                    android:textSize="11sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_torch_toggle"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Torch: OFF"
+                        android:textColor="#F8FAFC"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btn_lock_screen"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Lock Screen"
+                        android:textColor="#F8FAFC"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp" />
+
+                    <Button
+                        android:id="@+id/btn_device_status"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Device Status"
+                        android:textColor="#F8FAFC"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Username & Telegram Admin Bot Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_glass_card"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:layout_marginBottom="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1. Phone 1 turns on Portable Wi-Fi Hotspot (its IP will usually be 192.168.43.1)."
-                    android:textColor="#94A3B8"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="4dp" />
+                    android:text="USER &amp; TELEGRAM ADMIN ALERTS"
+                    android:textColor="#38BDF8"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2. Phone 2 joins Phone 1's Wi-Fi Hotspot network."
-                    android:textColor="#94A3B8"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="4dp" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/et_username"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:hint="Enter username"
+                        android:textColorHint="#475569"
+                        android:textColor="#FFFFFF"
+                        android:inputType="textPersonName"
+                        android:textSize="14sp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_register_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Register"
+                        android:textColor="#38BDF8"
+                        android:textSize="13sp"
+                        android:textAllCaps="false"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3. Open My Assistant on both phones and tap Start Call!"
-                    android:textColor="#94A3B8"
-                    android:textSize="12sp" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_telegram_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Telegram Bot: Active"
+                        android:textColor="#94A3B8"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_sync_telegram"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sync Admin Chat"
+                        android:textColor="#38BDF8"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:padding="4dp" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -297,12 +501,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:background="#D90A0F1D"
+        android:background="#E60A0F1D"
         android:paddingTop="12dp"
-        android:paddingBottom="36dp"
+        android:paddingBottom="32dp"
         android:visibility="gone">
 
-        <!-- Call Status Pill -->
+        <!-- Call Status & Live ICE Counters -->
         <TextView
             android:id="@+id/tv_call_status"
             android:layout_width="wrap_content"
@@ -310,10 +514,73 @@
             android:layout_gravity="center_horizontal"
             android:text="Connecting..."
             android:textColor="#38BDF8"
-            android:textSize="13sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
 
-        <!-- Control Action Buttons -->
+        <TextView
+            android:id="@+id/tv_call_ice_counters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Peers: 0 | Local ICE: 0 | Remote ICE: 0"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Remote Peer Command Bar during Active Call -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btn_remote_torch"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_secondary"
+                android:text="Peer Torch"
+                android:textColor="#E2E8F0"
+                android:textSize="11sp"
+                android:textAllCaps="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_remote_status"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_secondary"
+                android:text="Peer Status"
+                android:textColor="#E2E8F0"
+                android:textSize="11sp"
+                android:textAllCaps="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_remote_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_secondary"
+                android:text="Peer Lock"
+                android:textColor="#FCA5A5"
+                android:textSize="11sp"
+                android:textAllCaps="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+        </LinearLayout>
+
+        <!-- Primary Call Action Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -322,59 +589,54 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
-            <!-- Mic Mute/Unmute -->
             <ImageButton
                 android:id="@+id/btn_toggle_mic"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:background="@drawable/bg_control_circle"
                 android:src="@drawable/ic_mic"
                 android:contentDescription="Toggle Microphone"
-                android:padding="14dp" />
+                android:padding="13dp" />
 
-            <!-- Video Camera Toggle -->
             <ImageButton
                 android:id="@+id/btn_toggle_video"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="14dp"
                 android:background="@drawable/bg_control_circle"
                 android:src="@drawable/ic_videocam"
                 android:contentDescription="Toggle Video Camera"
-                android:padding="14dp" />
+                android:padding="13dp" />
 
-            <!-- Hang Up Button (Red) -->
             <ImageButton
                 android:id="@+id/btn_hangup"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:background="@drawable/bg_button_hangup"
                 android:src="@drawable/ic_call_end"
                 android:contentDescription="End Call"
-                android:padding="16dp" />
+                android:padding="15dp" />
 
-            <!-- Switch Front/Back Camera -->
             <ImageButton
                 android:id="@+id/btn_switch_camera"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:background="@drawable/bg_control_circle"
                 android:src="@drawable/ic_switch_camera"
                 android:contentDescription="Flip Camera"
-                android:padding="14dp" />
+                android:padding="13dp" />
 
-            <!-- Speakerphone Toggle -->
             <ImageButton
                 android:id="@+id/btn_toggle_speaker"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="14dp"
                 android:background="@drawable/bg_control_circle"
                 android:src="@drawable/ic_volume_up"
                 android:contentDescription="Toggle Speaker"
-                android:padding="14dp" />
+                android:padding="13dp" />
         </LinearLayout>
     </LinearLayout>
 
